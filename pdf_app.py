@@ -55,7 +55,6 @@ def translate_text():
 def summary_text():
     text = editor.selection_get()
     summary = summarizer(text, max_length=130, min_length=30, do_sample=False)[0].get('summary_text')
-    #label["text"] = summary
     window = Tk()
     window.title("Summary")
     window.geometry("350x300")
@@ -91,7 +90,4 @@ btnPrev = ttk.Button(text='previous page', command=click_prev)
 btnPrev.pack(side=RIGHT)
 
 root.mainloop()
-#st.write(root)
-
-
 
