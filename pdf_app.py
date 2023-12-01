@@ -4,9 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from deep_translator import GoogleTranslator
 from transformers import pipeline
-'''from parrot import Parrot
-import warnings
-warnings.filterwarnings("ignore")'''
+
 
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 'parrot = Parrot(model_tag="prithivida/parrot_paraphraser_on_T5", use_gpu=False)'
@@ -55,7 +53,6 @@ def translate_text():
 def summary_text():
     text = editor.selection_get()
     summary = summarizer(text, max_length=130, min_length=30, do_sample=False)[0].get('summary_text')
-    #label["text"] = summary
     window = Tk()
     window.title("Summary")
     window.geometry("350x300")
@@ -65,15 +62,6 @@ def summary_text():
     close_button = ttk.Button(window, text="Close window", command=lambda: window.destroy())
     close_button.pack(anchor="center", expand=1)
 
-'''def paraphrase_text():
-    text = editor.selection_get()
-    para_phrases = parrot.augment(input_phrase=text, max_return_phrases=2)
-    while(type(para_phrases)== 'NoneType'):
-        para_phrases = parrot.augment(input_phrase=text, max_return_phrases=2)
-
-    paraphrase = para_phrases[0][0]
-    label["text"] = paraphrase'''
-
 
 label = ttk.Label()
 label.pack(anchor=NW)
@@ -82,8 +70,6 @@ btnTranslate = ttk.Button(text="translate", command=translate_text)
 btnTranslate.pack(side=LEFT)
 btnSummary = ttk.Button(text="summary", command=summary_text)
 btnSummary.pack(side=LEFT)
-'''btnParaphrase = ttk.Button(text="paraphrase", command=paraphrase_text)
-btnParaphrase.pack(side=LEFT)'''
 
 btnNext = ttk.Button(text='next page', command=click_next)
 btnNext.pack(side=RIGHT)
@@ -91,7 +77,4 @@ btnPrev = ttk.Button(text='previous page', command=click_prev)
 btnPrev.pack(side=RIGHT)
 
 root.mainloop()
-#st.write(root)
-
-
 
